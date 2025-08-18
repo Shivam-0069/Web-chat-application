@@ -1,0 +1,107 @@
+
+# url localhost
+@url  = http://localhost:3001/api
+# url product
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkzYTdhNGIxYWRmMWU2OWI1NzQyZCIsInVzZXJuYW1lIjoiYW5odGh5IiwiZW1haWwiOiJhbmh0aHlAZ21haWwuY29tIiwiaWF0IjoxNjc2MDk2Njg4LCJleHAiOjE2NzYwOTY4MDh9.kRWaC_2Kqdki66XN-L4E6-Tn6pNZj7iuMh5J6UiCtLI
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odGh1eSIsImlhdCI6MTY3NDcyNTI2MX0.WttXYRfnVlQuZTPqlE9JSdpwsu91t_xYvdYOyQzI7wo
+
+# =============AUTH================== 
+
+### Register
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+    "username": "khoavh",
+    "password": "1",
+    "avatar": "https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-2.jpg"
+}
+
+### Login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "khoavh@gmail.com",
+    "password": "1"
+}
+
+### Logout
+POST {{url}}/auth/logout
+Content-Type: application/json
+
+{
+    "id": "63b93a7a4b1adf1e69b5742d"
+}
+
+### refreshToken
+POST {{url}}/auth/refreshToken
+Content-Type: application/json
+
+{
+    "id": "63b93a7a4b1adf1e69b5742d",
+    "token": "{{refreshToken}}"
+}
+
+# ==================USER=========================
+
+### List All USer
+GET {{url}}/user
+Authorization: Beaer {{token}}
+
+### search
+POST {{url}}/user/search
+Authorization: Beaer {{token}}
+Content-Type: application/json
+
+{
+    "username": "khoavh"
+}
+
+### Destroy All
+DELETE {{url}}/user/destroy
+Authorization: Beaer {{token}}
+
+### profile
+GET {{url}}/user/profile/63b673f6f878cb9c68675fe6
+Authorization: Beaer {{token}}
+
+###  delete a users
+DELETE {{url}}/users/delete/63baa329b593996a69735666
+Authorization: Beaer {{token}}
+
+
+# ======================MESSAGE=========================
+
+### List All Message
+POST {{url}}/message/list
+Authorization: Beaer {{token}}
+Content-Type: application/json
+
+{
+    "senderID": "63b93a7a4b1adf1e69b5742d"
+}
+
+###  Message
+POST {{url}}/message/find
+Authorization: Beaer {{token}}
+Content-Type: application/json
+
+{
+    "senderID": "63b93a7a4b1adf1e69b5742d",
+    "receiverID": "63d5360bbfe103866f4ee972"
+}
+
+###  Create Message Thy
+POST {{url}}/message/create
+Authorization: Beaer {{token}}
+Content-Type: application/json
+
+{
+    "message": "How are you?",
+    "senderID": "63b93a7a4b1adf1e69b5742d",
+    "receiverID": "63d5360bbfe103866f4ee972"
+}
+
+
+
